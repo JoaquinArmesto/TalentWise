@@ -3,21 +3,53 @@ DROP SCHEMA IF EXISTS recruiting_model;
 
 
 -- Creating the schema
-CREATE SCHEMA IF NOT EXISTS recruiting_model;
+CREATE SCHEMA IF NOT EXISTS talent_wise;
 
 
 -- Use the correct schema
-USE recruiting_model;
+USE talent_wise;
+
+
+-- Create table User for app usage
+CREATE TABLE IF NOT EXISTS app_user (
+    id bigint auto_increment,
+    user_name text not null,
+    user_pass text not null,
+    user_email varchar(255) not null,
+    CONSTRAINT PK_app_user_id PRIMARY KEY (id)
+);
+
+INSERT INTO app_user(user_name, user_pass, user_email) values ('Joaco', '1234', 'alvaro.armesto@gmail.com');
+
+
+-- Creating client table
+CREATE TABLE IF NOT EXISTS client (
+    id bigint auto_increment,
+    created_at timestamp default(current_timestamp),
+    updated_at timestamp default(current_timestamp),
+    deleted_at timestamp default(null),
+    client_name varchar(255) not null,
+    internal_manager text not null,
+    external_manager text not null,
+    website varchar(500) default(null),
+    revenue_quarter bigint default(null),
+    revenue_year bigint default(null),
+    operation_costs bigint default(null),
+    earnings bigint default(null),
+    CONSTRAINT PK_client_id PRIMARY KEY (id)
+);
 
 
 -- Creating project table
 CREATE TABLE IF NOT EXISTS project (
 	id bigint auto_increment,
-	name varchar(255) not null,
+	client_id bigint not null,
+	project_name varchar(255) not null,
 	created_at timestamp default (current_timestamp),
     updated_at timestamp default (current_timestamp),
     deleted_at timestamp null,
-	CONSTRAINT PK_project_id PRIMARY KEY (id)
+	CONSTRAINT PK_project_id PRIMARY KEY (id),
+	CONSTRAINT FK_client_id FOREIGN KEY (client_id) REFERENCES client (id)
 );
 
 
