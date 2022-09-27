@@ -96,3 +96,23 @@ CREATE PROCEDURE SpOpenCloseAllProjects(delete_full boolean)
 
         select * from project;
     end $$
+
+
+-- Procedure used for app login checks
+drop procedure if exists sp_login_check;
+delimiter $$
+create procedure sp_login_check(in user_name varchar(255), in user_pass varchar(255), out test_value boolean)
+    begin
+        set test_value = false;
+        set @user_exist = (
+            select count(id)
+            from app_user au
+            where au.user_name like user_name
+              and au.user_pass like user_pass);
+
+        if (@user_exist > 0) then
+            set test_value = true;
+        end if;
+    select test_value;
+    end
+$$;
