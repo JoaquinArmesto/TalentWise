@@ -1,5 +1,5 @@
 -- Dropping the schema for reruns
-DROP SCHEMA IF EXISTS recruiting_model;
+DROP SCHEMA IF EXISTS talent_wise;
 
 
 -- Creating the schema
@@ -10,16 +10,31 @@ CREATE SCHEMA IF NOT EXISTS talent_wise;
 USE talent_wise;
 
 
--- Create table User for app usage
+-- Creating roster table
+CREATE TABLE IF NOT EXISTS roster (
+	id bigint auto_increment,
+    created_at timestamp default (current_timestamp),
+    updated_at timestamp default (current_timestamp),
+    deleted_at timestamp null,
+    name text not null,
+    gender text not null,
+    role text(50) not null,
+    email varchar(255) not null,
+    phone varchar (255),
+	CONSTRAINT PK_roster PRIMARY KEY (id)
+);
+
+
+-- Create table app_user for app usage
 CREATE TABLE IF NOT EXISTS app_user (
     id bigint auto_increment,
     user_name text not null,
     user_pass text not null,
     user_email varchar(255) not null,
-    CONSTRAINT PK_app_user_id PRIMARY KEY (id)
+    roster_id bigint not null,
+    CONSTRAINT PK_app_user_id PRIMARY KEY (id),
+    CONSTRAINT FK_app_roster_id FOREIGN KEY (roster_id) REFERENCES roster (id)
 );
-
-INSERT INTO app_user(user_name, user_pass, user_email) values ('Joaco', '1234', 'alvaro.armesto@gmail.com');
 
 
 -- Creating client table
@@ -30,13 +45,15 @@ CREATE TABLE IF NOT EXISTS client (
     deleted_at timestamp default(null),
     client_name varchar(255) not null,
     internal_manager text not null,
+    internal_manager_id bigint not null,
     external_manager text not null,
     website varchar(500) default(null),
     revenue_quarter bigint default(null),
     revenue_year bigint default(null),
     operation_costs bigint default(null),
     earnings bigint default(null),
-    CONSTRAINT PK_client_id PRIMARY KEY (id)
+    CONSTRAINT PK_client_id PRIMARY KEY (id),
+    CONSTRAINT FK_internal_manager_id FOREIGN KEY (internal_manager_id) REFERENCES roster (id)
 );
 
 
@@ -133,21 +150,6 @@ CREATE TABLE IF NOT EXISTS stage (
 );
 
 
--- Creating roster table
-CREATE TABLE IF NOT EXISTS roster (
-	id bigint auto_increment,
-    created_at timestamp default (current_timestamp),
-    updated_at timestamp default (current_timestamp),
-    deleted_at timestamp null,
-    name text not null,
-    gender text not null,
-    role text(50) not null,
-    email varchar(255) not null,
-    phone varchar (255),
-	CONSTRAINT PK_roster PRIMARY KEY (id)
-);
-
-
 -- Creating funnel table
 CREATE TABLE IF NOT EXISTS funnel (
     id bigint auto_increment,
@@ -187,7 +189,7 @@ CREATE TABLE IF NOT EXISTS log_funnel_new_state (
 );
 
 
-CREATE TABLE log_requisition_update (
+CREATE TABLE IF NOT EXISTS log_requisition_update (
     id bigint auto_increment,
     requisition_id bigint not null,
     user varchar(255) not null,
