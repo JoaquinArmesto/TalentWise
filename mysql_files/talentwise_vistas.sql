@@ -180,3 +180,21 @@ as (
    group by c.name
    order by outreach);
 
+
+-- Shows a count of candidates in the funnel for each client
+create or replace view vw_CandidateCountByClient
+as (
+   select distinct
+       c.client_name as client,
+       count(candidate_id) as candidates
+   from funnel f
+            left join requisition r
+                      on f.requisition_id = r.id
+            left join role rl
+                      on r.role_id = rl.id
+            left join project p
+                      on rl.project_id = p.id
+            left join client c
+                      on p.client_id = c.id
+   group by 1
+   order by count(f.candidate_id) desc, c.client_name asc);
