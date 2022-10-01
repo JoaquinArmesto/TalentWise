@@ -2,7 +2,7 @@
 use talent_wise;
 
 
--- This procedure sorts table based on table name, column and sorting order
+-- Procedure used for sorting tables
 drop procedure if exists sp_TableSort;
 delimiter $$
 create procedure sp_TableSort (in tableName varchar(100), in columnName varchar(100), in sortVar varchar(10))
@@ -31,7 +31,7 @@ begin
 end $$
 
 
--- This procedure closes and open projects
+-- Procedure used for closing and opening a project
 drop procedure if exists sp_CloseOpenProject;
 delimiter $$
 create procedure sp_CloseOpenProject(in project int, in delete_full boolean, query_return boolean)
@@ -75,7 +75,7 @@ begin
 end $$
 
 
--- This procedure closes and open all projects at once
+-- Procedure used for closing and opening all projects at once
 drop procedure if exists sp_OpenCloseAllProjects;
 delimiter $$
 create procedure sp_OpenCloseAllProjects(delete_full boolean)
