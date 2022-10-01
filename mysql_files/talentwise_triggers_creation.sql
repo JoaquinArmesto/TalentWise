@@ -1,4 +1,4 @@
-use recruiting_model;
+use talent_wise;
 
 
 -- Trigger that corrects issues with auto_increment when an error occurs on insertion
@@ -8,7 +8,7 @@ create trigger trFunnelNewEntry before insert on funnel
     for each row
     begin
         set new.id = (select max(id)+1 from funnel);
-    end $$
+    end $$;
 
 
 -- Trigger creates entries in log_funnel_new_entry and log_gunnel_new_state for new entries in funnel
@@ -24,7 +24,7 @@ create trigger trFunnelNewEntryLog after insert on funnel
         values(new.id,
                CONCAT(new.id, ':', new.date, ':', new.candidate_id, ':', new.stage_id, ':', new.requisition_id, ':', new.roster_id),
                false);
-    end $$
+    end $$;
 
 
 -- Tigger saves before state and after state of funnel entries in a csv format using : as separator
@@ -59,7 +59,7 @@ for each row
                     modified=modified+1
                 where funnel_id=new.id;
         end if;
-    end $$
+    end $$;
 
 
 -- Trigger updates updated_at of requisition
@@ -69,7 +69,7 @@ CREATE TRIGGER trRequisitionUpdate before update on requisition
 for each row
     begin
         set new.updated_at=now();
-    end $$
+    end $$;
 
 
 -- Trigger creates an insert on log_requisition_update on requisition updates
@@ -82,7 +82,7 @@ CREATE TRIGGER trRequisitionUpdateLog after update on requisition
             insert into log_requisition_update(requisition_id, user, date, time)
                 values(new.id, user(), date(current_time), time(current_time));
 
-        end $$
+        end $$;
 
 
 

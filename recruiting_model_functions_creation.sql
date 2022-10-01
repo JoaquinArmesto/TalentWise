@@ -50,3 +50,4 @@ RETURNS VARCHAR(250) DETERMINISTIC
 
         RETURN business_days_elapsed;
     END $$
+

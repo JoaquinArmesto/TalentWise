@@ -101,9 +101,9 @@ CREATE PROCEDURE SpOpenCloseAllProjects(delete_full boolean)
 -- Procedure used for app login checks
 drop procedure if exists sp_login_check;
 delimiter $$
-create procedure sp_login_check(in user_name varchar(255), in user_pass varchar(255), out test_value boolean)
+create procedure sp_login_check(in user_name text, in user_pass text, return_value boolean)
     begin
-        set test_value = false;
+        set return_value = false;
         set @user_exist = (
             select count(id)
             from app_user au
@@ -111,8 +111,32 @@ create procedure sp_login_check(in user_name varchar(255), in user_pass varchar(
               and au.user_pass like user_pass);
 
         if (@user_exist > 0) then
-            set test_value = true;
+            set return_value = true;
         end if;
-    select test_value;
+    select return_value;
     end
 $$;
+
+
+-- Procedure used for user creation
+drop procedure if exists sp_create_account;
+delimiter $$
+create procedure sp_create_account (in user_name text, in user_pass text, in user_email text, in user_gender text, in user_role text, in user_phone text)
+    begin
+        declare new_user_id bigint default(0);
+
+        insert into roster (name, gender, role, email, phone)
+            values (user_name, user_gender, user_role, user_email, user_phone);
+
+        set new_user_id = (
+            select id
+            from roster
+            where name like user_name
+              and email like user_email);
+
+        insert into app_user (user_name, user_pass, user_email, roster_id)
+            values (user_name, user_pass, user_email, new_user_id);
+
+    end $$;
+
+

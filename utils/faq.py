@@ -4,7 +4,7 @@ import pandas as pd
 
 def faq(block):
     block.empty()
-    df = pd.read_csv('../../Python/trellix_sample')
+    df = pd.read_csv('../../../Python/trellix_sample')
     len = df.shape[0] / 100
 
 

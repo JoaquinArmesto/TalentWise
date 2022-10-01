@@ -1,5 +1,5 @@
 -- Use the correct schema
-USE recruiting_model;
+USE talent_wise;
 
 -- Inserting all the projects
 INSERT INTO project (name) VALUES ('AIG');

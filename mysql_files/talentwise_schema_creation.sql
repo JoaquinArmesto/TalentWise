@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS roster (
 	id bigint auto_increment,
     created_at timestamp default (current_timestamp),
     updated_at timestamp default (current_timestamp),
-    deleted_at timestamp null,
+    deleted_at timestamp default (null),
     name text not null,
     gender text not null,
     role text(50) not null,
