@@ -9,8 +9,8 @@ class User:
 
     def login_check(self):
         query = f"""
-                USE talent_wise;
-                call sp_login_check('{self.user}', '{self.pasw}', @return);"""
+                use talent_wise;
+                call sp_LoginCheck('{self.user}', '{self.pasw}', @return);"""
 
         check = db_statement('utils/database_credentials.json', query)[0][0][0]
 

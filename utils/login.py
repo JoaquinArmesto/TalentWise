@@ -37,15 +37,15 @@ def login(block, block_logo, block_phrase):
             account_tab.error('The user password should be eight character long or more')
         else:
             query_test = f"""
-                    USE talent_wise;
+                    use talent_wise;
                     select * from app_user where user_name = '{new_user_var.strip()}' or user_email = '{new_mail_var.strip()}'
                     """
             create_query = db_statement('utils/database_credentials.json', query_test)
             if len(create_query) == 0:
 
                 query = f"""
-                        USE talent_wise;
-                        call sp_create_account('{new_user_var}', '{new_pass_var}', '{new_mail_var}', '{new_gend_var}', '{new_role_var}', '{new_phon_var}');
+                        use talent_wise;
+                        call sp_CreateAccount('{new_user_var}', '{new_pass_var}', '{new_mail_var}', '{new_gend_var}', '{new_role_var}', '{new_phon_var}');
                         """
                 create_result = db_statement('utils/database_credentials.json', query)
                 st.session_state['page'] = ''
