@@ -1,3 +1,4 @@
+-- Use the correct schema
 use talent_wise;
 
 
@@ -6,9 +7,9 @@ DROP TRIGGER if exists trFunnelNewEntry;
 delimiter $$
 create trigger trFunnelNewEntry before insert on funnel
     for each row
-    begin
-        set new.id = (select max(id)+1 from funnel);
-    end $$;
+begin
+    set new.id = (select max(id)+1 from funnel);
+end $$;
 
 
 -- Trigger creates entries in log_funnel_new_entry and log_gunnel_new_state for new entries in funnel
@@ -74,15 +75,10 @@ for each row
 
 -- Trigger creates an insert on log_requisition_update on requisition updates
 DROP TRIGGER IF EXISTS trRequisitionUpdateLog;
-
 delimiter $$
 CREATE TRIGGER trRequisitionUpdateLog after update on requisition
     for each row
         begin
             insert into log_requisition_update(requisition_id, user, date, time)
                 values(new.id, user(), date(current_time), time(current_time));
-
         end $$;
-
-
-

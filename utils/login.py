@@ -1,6 +1,5 @@
 import streamlit as st
-from talentwise_connection import db_statement
-from utils.faq import faq
+from utils.sql_connection import db_statement
 from utils.main import main_menu
 from utils.user import User
 

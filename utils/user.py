@@ -1,4 +1,4 @@
-from talentwise_connection import db_statement
+from utils.sql_connection import db_statement
 
 class User:
     def __init__(self, user_name, user_pass, user_mail=None, user_sess=None):
