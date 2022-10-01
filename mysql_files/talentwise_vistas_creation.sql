@@ -1,5 +1,5 @@
 -- Use the correct schema
-use recruiting_model;
+use talent_wise;
 
 
 -- Funnel activity view
