@@ -1,11 +1,22 @@
 import json
 import mysql.connector
+import streamlit as st
 
-def db_statement(credentials_file, query):
+# def db_statement(query, credentials_file):
+
+def db_statement(query):
+    credentials_json = {
+        'user': st.secrets(['DB_USER']),
+        'host': st.secrets(['DB_HOSTS']),
+        'port': st.secrets(['DB_PORT']),
+        'pass': st.secrets(['DB_PASS'])
+    }
+
     query_results = list()
 
-    with open(credentials_file) as credentials:
-            credentials_json = json.load(credentials)
+
+    # with open(credentials_file) as credentials:
+    #         credentials_json = json.load(credentials)
 
     with mysql.connector.connect(user=credentials_json['user'],
                                  host=credentials_json['host'],
