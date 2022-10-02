@@ -75,7 +75,6 @@ create table if not exists role (
     title varchar(255),
     start_date datetime not null,
     end_date datetime null,
-    client varchar(255) not null,
     project_id bigint not null,
     constraint PK_roles_id primary key (id),
     constraint FK_project_id foreign key  (project_id) references project (id));

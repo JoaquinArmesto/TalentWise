@@ -8,8 +8,8 @@ st.set_page_config(layout="wide",
                    page_title='TalentWise')
 
 
-# with open('style/skin.css') as css:
-#     st.markdown(f"<style> {css.read()}</style>", unsafe_allow_html=True)
+with open('style/skin.css') as css:
+    st.markdown(f"<style> {css.read()}</style>", unsafe_allow_html=True)
 
 
 
