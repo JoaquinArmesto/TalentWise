@@ -30,10 +30,11 @@ begin
 end $$
 
 
--- Uses BusinessDays function to calculate the elapsed business days for each role
-drop function if exists fn_ElapsedBusinessDaysForRole;
+-- Uses BusinessDays function to calculate the elapsed business days between the first and last stage for a given
+-- requisition
+drop function if exists fn_ElapsedBusinessDaysForRequisition;
 delimiter $$
-create function fn_ElapsedBusinessDaysForRole(id int)
+create function fn_ElapsedBusinessDaysForRequisition(id int)
     returns varchar(250) deterministic
 begin
     declare min_date date;

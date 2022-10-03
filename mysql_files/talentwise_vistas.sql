@@ -198,3 +198,24 @@ as (
                       on p.client_id = c.id
    group by 1
    order by count(f.candidate_id) desc, c.client_name asc);
+
+
+-- Uses fn_ElapsedBusinessDaysForRole to calculate aging for requisitions
+create or replace view vw_AgeingByRequisition
+as (
+   select
+       re.id requisition_id,
+       ro.title as role_title,
+       fn_ElapsedBusinessDaysForRequisition(re.id) ageing
+   from requisition re
+            join role ro on re.role_id = ro.id
+   where re.id=
+             any(
+                 select t1.requisition_id
+                 from (
+                     select requisition_id,
+                            count(id) as entry_number
+                     from funnel
+                     group by 1) as t1
+                 where t1.entry_number > 1)
+   order by ageing asc, requisition_id asc);
