@@ -202,32 +202,32 @@ insert into city (country_id,name,lat,lng) values (11,'Texas City',29.4128,-94.9
 
 
 -- Inserting all the roles
-insert into role (title, start_date, client, project_id) values ('Software engineer', '2022-07-24 00:00:00', 'American Express', 2);
-insert into role (title, start_date, client, project_id) values ('Software engineer', '2022-07-25 00:00:00', 'Dell Technologies', 1);
-insert into role (title, start_date, client, project_id) values ('Data scientist', '2022-07-25 00:00:00', 'Dell Technologies', 1);
-insert into role (title, start_date, client, project_id) values ('Chief Technical Officer', '2022-07-25 00:00:00', 'Apple', 3);
-insert into role (title, start_date, client, project_id) values ('Software engineer', '2022-08-30 00:00:00', 'American Express', 2);
-insert into role (title, start_date, client, project_id) values ('Software engineer', '2022-08-30 00:00:00', 'Apple', 3);
-insert into role (title, start_date, client, project_id) values ('Software engineer', '2022-08-30 00:00:00', 'Exxon Mobil', 4);
-insert into role (title, start_date, client, project_id) values ('Software engineer', '2022-08-30 00:00:00', 'American Express', 2);
-insert into role (title, start_date, client, project_id) values ('Software engineer', '2022-08-30 00:00:00', 'American Express', 2);
-insert into role (title, start_date, client, project_id) values ('Software engineer', '2022-08-30 00:00:00', 'American Express', 2);
-insert into role (title, start_date, client, project_id) values ('Data scientist', '2022-08-30 00:00:00', 'American Express', 2);
-insert into role (title, start_date, client, project_id) values ('Data scientist', '2022-08-30 00:00:00', 'Apple', 3);
-insert into role (title, start_date, client, project_id) values ('Data scientist', '2022-08-30 00:00:00', 'American Express', 2);
-insert into role (title, start_date, client, project_id) values ('Data scientist', '2022-08-30 00:00:00', 'Exxon Mobil', 4);
-insert into role (title, start_date, client, project_id) values ('Data scientist', '2022-08-30 00:00:00', 'American Express', 2);
-insert into role (title, start_date, client, project_id) values ('Data analyst', '2022-08-30 00:00:00', 'Exxon Mobil', 4);
-insert into role (title, start_date, client, project_id) values ('Data analyst', '2022-08-30 00:00:00', 'American Express', 2);
-insert into role (title, start_date, client, project_id) values ('Data analyst', '2022-08-30 00:00:00', 'Apple', 3);
-insert into role (title, start_date, client, project_id) values ('Data analyst', '2022-08-30 00:00:00', 'AT&T', 5);
-insert into role (title, start_date, client, project_id) values ('Data analyst', '2022-08-30 00:00:00', 'AT&T', 5);
-insert into role (title, start_date, client, project_id) values ('Data analyst', '2022-08-30 00:00:00', 'AT&T', 5);
-insert into role (title, start_date, client, project_id) values ('Data analyst', '2022-08-30 00:00:00', 'Exxon Mobil', 4);
-insert into role (title, start_date, client, project_id) values ('Backend developer', '2022-08-30 00:00:00', 'AT&T', 5);
-insert into role (title, start_date, client, project_id) values ('Backend developer', '2022-08-30 00:00:00', 'Dell Technologies', 1);
-insert into role (title, start_date, client, project_id) values ('Backend developer', '2022-08-30 00:00:00', 'Exxon Mobil', 4);
-insert into role (title, start_date, client, project_id) values ('Backend developer', '2022-08-30 00:00:00', 'Exxon Mobil', 4);
+insert into role (title, start_date, project_id) values ('Software engineer', '2022-07-24 00:00:00', 2);
+insert into role (title, start_date, project_id) values ('Software engineer', '2022-07-25 00:00:00', 1);
+insert into role (title, start_date, project_id) values ('Data scientist', '2022-07-25 00:00:00', 1);
+insert into role (title, start_date, project_id) values ('Chief Technical Officer', '2022-07-25 00:00:00', 3);
+insert into role (title, start_date, project_id) values ('Software engineer', '2022-08-30 00:00:00', 2);
+insert into role (title, start_date, project_id) values ('Software engineer', '2022-08-30 00:00:00', 3);
+insert into role (title, start_date, project_id) values ('Software engineer', '2022-08-30 00:00:00', 4);
+insert into role (title, start_date, project_id) values ('Software engineer', '2022-08-30 00:00:00', 2);
+insert into role (title, start_date, project_id) values ('Software engineer', '2022-08-30 00:00:00', 2);
+insert into role (title, start_date, project_id) values ('Software engineer', '2022-08-30 00:00:00', 2);
+insert into role (title, start_date, project_id) values ('Data scientist', '2022-08-30 00:00:00', 2);
+insert into role (title, start_date, project_id) values ('Data scientist', '2022-08-30 00:00:00', 3);
+insert into role (title, start_date, project_id) values ('Data scientist', '2022-08-30 00:00:00', 2);
+insert into role (title, start_date, project_id) values ('Data scientist', '2022-08-30 00:00:00', 4);
+insert into role (title, start_date, project_id) values ('Data scientist', '2022-08-30 00:00:00', 2);
+insert into role (title, start_date, project_id) values ('Data analyst', '2022-08-30 00:00:00', 4);
+insert into role (title, start_date, project_id) values ('Data analyst', '2022-08-30 00:00:00', 2);
+insert into role (title, start_date, project_id) values ('Data analyst', '2022-08-30 00:00:00', 3);
+insert into role (title, start_date, project_id) values ('Data analyst', '2022-08-30 00:00:00', 5);
+insert into role (title, start_date, project_id) values ('Data analyst', '2022-08-30 00:00:00', 5);
+insert into role (title, start_date, project_id) values ('Data analyst', '2022-08-30 00:00:00', 5);
+insert into role (title, start_date, project_id) values ('Data analyst', '2022-08-30 00:00:00', 4);
+insert into role (title, start_date, project_id) values ('Backend developer', '2022-08-30 00:00:00', 5);
+insert into role (title, start_date, project_id) values ('Backend developer', '2022-08-30 00:00:00', 1);
+insert into role (title, start_date, project_id) values ('Backend developer', '2022-08-30 00:00:00', 4);
+insert into role (title, start_date, project_id) values ('Backend developer', '2022-08-30 00:00:00', 4);
 
 
 -- Inserting all the requisitions
